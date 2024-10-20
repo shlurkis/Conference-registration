@@ -2,15 +2,23 @@
 
 use Illuminate\Support\Facades\Route;
 
+use App\Http\Controllers\ConferenceController;
+use App\Http\Controllers\UserController;
+
 Route::get('/', function () {
-    return view('welcome');
+    return view('home');
 });
 Route::get('/user', function () {
-    return view('user');
+    $conferences = \App\Models\Conference::all();
+    return view('user.index', compact('conferences'));
 });
 Route::get('/employee', function () {
-    return view('employee');
+    $conferences = \App\Models\Conference::with('users')->get();
+    return view('employee.index', compact('conferences'));
 });
-Route::get('/admin', function () {
-    return view('admin');
+Route::prefix('admin')->group(function () {
+    Route::resource('conferences', ConferenceController::class);
+    Route::resource('users', UserController::class);
 });
+Route::post('/register/{conference}', [UserController::class, 'registerForConference'])->name('register');
+
