@@ -3,11 +3,14 @@
 @section('content')
 <div class="container">
     <h1>Conferences</h1>
-    <a href="{{ route('conferences.create') }}" class="btn btn-primary mb-3">Create Conference</a>
+
     @if(session('success'))
         <div class="alert alert-success">{{ session('success') }}</div>
     @endif
-    <table class="table">
+
+    <a href="{{ route('conferences.create') }}" class="btn btn-primary">Create Conference</a>
+
+    <table class="table mt-3">
         <thead>
             <tr>
                 <th>Name</th>

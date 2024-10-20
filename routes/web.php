@@ -20,5 +20,8 @@ Route::prefix('admin')->group(function () {
     Route::resource('conferences', ConferenceController::class);
     Route::resource('users', UserController::class);
 });
+Route::get('/admin', function () {
+    return view('admin');
+})->name('admin');
 Route::post('/register/{conference}', [UserController::class, 'registerForConference'])->name('register');
 
