@@ -4,13 +4,15 @@ namespace App\Http\Controllers;
 
 use App\Models\Conference;
 use Illuminate\Http\Request;
+use App\Models\User;
 
 class ConferenceController extends Controller
 {
     public function index()
     {
-        $conferences = Conference::all();
-        return view('admin.conferences.index', compact('conferences'));
+        $conferences = \App\Models\Conference::all();
+        $users = \App\Models\User::all();
+        return view('user.index', compact('conferences', 'users'));
     }
 
     public function create()
@@ -19,39 +21,49 @@ class ConferenceController extends Controller
     }
 
     public function store(Request $request)
-{
-    $request->validate([
-        'name' => 'required|string|max:255',
-        'description' => 'required|string',
-        'date' => 'required|date',
-    ]);
+    {
+        $request->validate([
+            'name' => 'required|string|max:255',
+            'description' => 'required|string',
+            'date' => 'required|date',
+        ]);
 
-    
-    Conference::create($request->only(['name', 'description', 'date']));
+        Conference::create($request->all());
 
-    return redirect()->route('conferences.index')->with('success', 'Conference created successfully!');
-}
+        return redirect()->route('admin.dashboard')->with('success', 'Conference created successfully.');
+    }
 
     public function edit(Conference $conference)
     {
-        return view('admin.conferences.edit', compact('conference'));
+        $participants = $conference->users;
+    
+        return view('admin.conferences.edit', compact('conference', 'participants'));
     }
+
+    public function removeParticipant(Conference $conference, User $user)
+{
+    $conference->users()->detach($user->id);
+    return redirect()->route('admin.conferences.edit', $conference)
+                     ->with('success', 'Participant removed successfully.');
+}
 
     public function update(Request $request, Conference $conference)
     {
         $request->validate([
-            'name' => 'required',
+            'name' => 'required|string|max:255',
+            'description' => 'required|string',
             'date' => 'required|date',
-            'description' => 'nullable|string',
         ]);
 
         $conference->update($request->all());
-        return redirect()->route('conferences.index')->with('success', 'Conference updated successfully.');
+
+        return redirect()->route('admin.dashboard')->with('success', 'Conference updated successfully.');
     }
 
     public function destroy(Conference $conference)
     {
         $conference->delete();
-        return redirect()->route('conferences.index')->with('success', 'Conference deleted successfully.');
+
+        return redirect()->route('admin.dashboard')->with('success', 'Conference deleted successfully.');
     }
 }

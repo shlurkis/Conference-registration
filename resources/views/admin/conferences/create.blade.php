@@ -2,9 +2,8 @@
 
 @section('content')
 <div class="container">
-    <h1>Create Conference</h1>
-
-    <form action="{{ route('conferences.store') }}" method="POST">
+    <h2>Create Conference</h2>
+    <form action="{{ route('admin.conferences.store') }}" method="POST">
         @csrf
         <div class="form-group">
             <label for="name">Name</label>
@@ -18,7 +17,7 @@
             <label for="date">Date</label>
             <input type="date" name="date" class="form-control" required>
         </div>
-        <button type="submit" class="btn btn-success">Create</button>
+        <button type="submit" class="btn btn-primary">Create Conference</button>
     </form>
 </div>
 @endsection

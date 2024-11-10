@@ -9,7 +9,7 @@
                 <h5>{{ $conference->name }}</h5>
                 <button class="btn btn-info btn-sm" onclick="toggleDetails({{ $conference->id }})">Show More</button>
 
-                <!-- hidden -->
+                <!-- hidden details -->
                 <div id="conference-details-{{ $conference->id }}" class="conference-details" style="display: none; margin-top: 10px;">
                     <p><strong>Description:</strong> {{ $conference->description }}</p>
                     <p><strong>Date:</strong> {{ $conference->date }}</p>
@@ -17,12 +17,13 @@
                     <form action="{{ route('register', $conference) }}" method="POST" style="margin-top: 10px;">
                         @csrf
                         <div class="form-group">
-                            <label for="name">Name</label>
-                            <input type="text" name="name" class="form-control" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="email">Email</label>
-                            <input type="email" name="email" class="form-control" required>
+                            <label for="user">Select Your Name</label>
+                            <select name="user_id" class="form-control" required>
+                                <option value="">--Select a User--</option>
+                                @foreach($users as $user)
+                                    <option value="{{ $user->id }}">{{ $user->name }}</option>
+                                @endforeach
+                            </select>
                         </div>
                         <input type="hidden" name="conference_id" value="{{ $conference->id }}">
                         <button type="submit" class="btn btn-success">Register</button>
