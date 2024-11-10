@@ -41,15 +41,6 @@
             <input type="password" name="password_confirmation" id="password_confirmation" class="form-control" required>
         </div>
 
-        <div class="form-group">
-            <label for="role">Role</label>
-            <select name="role" id="role" class="form-control" required>
-                <option value="user" {{ old('role') == 'user' ? 'selected' : '' }}>User</option>
-                <option value="employee" {{ old('role') == 'employee' ? 'selected' : '' }}>Employee</option>
-                <option value="admin" {{ old('role') == 'admin' ? 'selected' : '' }}>Admin</option>
-            </select>
-        </div>
-
         <button type="submit" class="btn btn-primary">Register</button>
     </form>
 @endsection

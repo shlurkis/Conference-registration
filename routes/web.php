@@ -34,3 +34,10 @@ Route::get('/user', [UserController::class, 'index'])->name('user.index');
 
 Route::delete('/admin/conferences/{conference}/participants/{user}', 
     [ConferenceController::class, 'removeParticipant'])->name('admin.conferences.removeParticipant');
+
+Route::get('locale/{locale}', function ($locale) {
+     if (in_array($locale, ['en', 'lt'])) {
+           session(['locale' => $locale]);
+       }
+       return redirect()->back();
+   })->name('locale.switch');

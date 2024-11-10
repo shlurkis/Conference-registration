@@ -17,6 +17,15 @@
             <li class="nav-item"><a class="nav-link" href="{{ url('/employee') }}">Employee Page</a></li>
             <li class="nav-item"><a class="nav-link" href="{{ url('/auth') }}">Register</a></li>
         </ul>
+        
+        <ul class="navbar-nav ml-auto"> 
+            <li class="nav-item">
+                <a class="nav-link" href="{{ route('locale.switch', 'en') }}">English</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{{ route('locale.switch', 'lt') }}">Lietuvių</a>
+            </li>
+        </ul>
     </div>
 </nav>
 
