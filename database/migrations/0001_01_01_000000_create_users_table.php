@@ -15,7 +15,8 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->string('email')->unique();
-            $table->string('password')->nullable();
+            $table->string('password');
+            $table->enum('role', ['user', 'employee', 'admin'])->default('user'); // Define the roles
             $table->timestamps();
         });
     
@@ -31,10 +32,8 @@ return new class extends Migration
     /**
      * Reverse the migrations.
      */
-    public function down(): void
+    public function down()
     {
-        // Schema::dropIfExists('users');
-        // Schema::dropIfExists('password_reset_tokens');
-        // Schema::dropIfExists('sessions');
+        Schema::dropIfExists('users');
     }
 };

@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\ConferenceController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\AuthController;
 
 Route::get('/', function () {
     return view('home');
@@ -24,3 +25,6 @@ Route::get('/admin', function () {
     return view('admin');
 })->name('admin');
 Route::post('/register/{conference}', [UserController::class, 'registerForConference'])->name('register');
+
+Route::get('/auth', [AuthController::class, 'showRegistrationForm'])->name('auth.show');
+Route::post('/auth/register', [AuthController::class, 'register'])->name('auth.register');

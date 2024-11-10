@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
 class User extends Model
 {
-    protected $fillable = ['name', 'email'];
+    protected $fillable = ['name', 'email', 'password', 'role'];
     public function conferences(): BelongsToMany
     {
         return $this->belongsToMany(Conference::class);

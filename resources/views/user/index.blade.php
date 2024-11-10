@@ -9,7 +9,7 @@
                 <h5>{{ $conference->name }}</h5>
                 <button class="btn btn-info btn-sm" onclick="toggleDetails({{ $conference->id }})">Show More</button>
 
-                <!-- Hidden details content for this conference -->
+                <!-- hidden -->
                 <div id="conference-details-{{ $conference->id }}" class="conference-details" style="display: none; margin-top: 10px;">
                     <p><strong>Description:</strong> {{ $conference->description }}</p>
                     <p><strong>Date:</strong> {{ $conference->date }}</p>
@@ -34,7 +34,7 @@
 </div>
 
 <script>
-    // Function to toggle the visibility of the conference details
+    // button to show details
     function toggleDetails(conferenceId) {
         var detailsDiv = document.getElementById('conference-details-' + conferenceId);
         if (detailsDiv.style.display === "none") {
