@@ -15,6 +15,7 @@
             <li class="nav-item"><a class="nav-link" href="{{ route('admin') }}">Admin Page</a></li>
             <li class="nav-item"><a class="nav-link" href="{{ url('/user') }}">User Page</a></li>
             <li class="nav-item"><a class="nav-link" href="{{ url('/employee') }}">Employee Page</a></li>
+            <li class="nav-item"><a class="nav-link" href="{{ url('/auth') }}">Register</a></li>
         </ul>
     </div>
 </nav>

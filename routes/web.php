@@ -24,4 +24,3 @@ Route::get('/admin', function () {
     return view('admin');
 })->name('admin');
 Route::post('/register/{conference}', [UserController::class, 'registerForConference'])->name('register');
-
